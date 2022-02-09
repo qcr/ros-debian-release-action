@@ -18,6 +18,6 @@ jobs:
       - name: Setup QEMU dependency
         uses: docker/setup-qemu-action@v1
       - id: test
-        uses: DasGuna/debian-release-action@main
+        uses: qcr/ros-debian-release-action@master
         with:
           architecture: ${{ matrix.arch }}
