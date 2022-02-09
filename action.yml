@@ -1,0 +1,27 @@
+name: 'Multi-Architecture Release Action'
+description: 'Creates a debian from a selected architecture'
+inputs:
+  ros-distro: #id of distro input
+    description: 'ROS distro to use'
+    required: false
+    default: 'noetic'
+  architecture: #id of architecture
+    description: 'Image architecture to use'
+    required: true
+    default: 'amd64'
+outputs:
+  debian-files:
+    description: "Array of Debian Files"
+    value: ${{ steps.docker_main.outputs.files }}
+runs:
+  using: "composite"
+  steps:
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+    - id: docker_main
+      run: docker_setup.sh
+      shell: bash
+      env:
+        ACTION_PATH: ${{ github.action_path }}
+        INPUT_ROS_DISTRO: ${{ inputs.ros-distro }}
+        INPUT_ARCH: ${{ inputs.architecture }}

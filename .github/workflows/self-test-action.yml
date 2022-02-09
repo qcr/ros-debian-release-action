@@ -1,0 +1,23 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Self Test
+on: [push]
+  
+jobs:
+  self-test-action:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: 'amd64'
+          - arch: 'arm64'
+          - arch: 'arm32'
+    name: Self Test of Action
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup QEMU dependency
+        uses: docker/setup-qemu-action@v1
+      - id: test
+        uses: DasGuna/debian-release-action@main
+        with:
+          architecture: ${{ matrix.arch }}
