@@ -87,6 +87,6 @@ else
 fi
 
 # Get packages list (in target folder)
-packages=$(realpath local-sources.yaml)
-echo "Packages: $packages"
-echo "::set-output name=packages::$packages"
+packages_content=$(<$(realpath local-sources.yaml))
+echo "Packages: $packages_content"
+echo "::set-output name=packages::$packages_content"
