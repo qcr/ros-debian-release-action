@@ -57,6 +57,7 @@ docker run \
     -v $mount_point_path:/docker_ws \
     --rm -t $IMAGE/ros:$INPUT_ROS_DISTRO docker_ws/release.sh
 
+# --- Extract Required Outputs [debian files and packages]
 echo "Container Completed Builds Successfully"
 echo "Enter Mount Point to Get debs..."
 cd $mount_point_path/release-tools-ros/target
@@ -84,3 +85,8 @@ if [ -f *.deb ]; then
 else
     echo "No debs found..."
 fi
+
+# Get packages list (in target folder)
+packages=$(realpath local-sources.yaml)
+echo "Packages: $packages"
+echo "::set-output name=packages::$packages"

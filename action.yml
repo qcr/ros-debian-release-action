@@ -13,6 +13,9 @@ outputs:
   debian-files:
     description: "Array of Debian Files"
     value: ${{ steps.docker_main.outputs.files }}
+  packages:
+    description: "local-sources.yaml File"
+    value: ${{ steps.docker_main.outputs.packages }}
 runs:
   using: "composite"
   steps:
