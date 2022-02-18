@@ -53,11 +53,11 @@ echo "Sanity Check IMAGE: $IMAGE"
 
 # Run container
 docker run \
-    --privileged \
-    --init \
+    --cap-add=SYS_ADMIN \
+    -e "container=docker" \
     -e INPUT_ROS_DISTRO=$INPUT_ROS_DISTRO \
     -v $mount_point_path:/docker_ws \
-    -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+    -v /sys/fs/cgroup:/sys/fs/cgroup \
     -v /usr/sbin/init:/usr/sbin/init \
     --rm -t $IMAGE/ros:$INPUT_ROS_DISTRO docker_ws/release.sh
 
