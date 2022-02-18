@@ -15,7 +15,8 @@ ln -s /usr/bin/python3 /usr/local/bin/python
 
 # TEMP - testing systemctl run
 echo "Running /usr/sbin/init"
-/usr/sbin/init
+ls -la /usr/sbin/
+exec /usr/sbin/init
 echo "Testing systemctl..."
 systemctl --version
 
