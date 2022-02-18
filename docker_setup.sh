@@ -54,9 +54,11 @@ echo "Sanity Check IMAGE: $IMAGE"
 # Run container
 docker run \
     --privileged \
+    --init \
     -e INPUT_ROS_DISTRO=$INPUT_ROS_DISTRO \
     -v $mount_point_path:/docker_ws \
     -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+    -v /usr/sbin/init:/usr/sbin/init \
     --rm -t $IMAGE/ros:$INPUT_ROS_DISTRO docker_ws/release.sh
 
 # --- Extract Required Outputs [debian files and packages]
