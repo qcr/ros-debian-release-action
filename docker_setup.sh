@@ -61,6 +61,10 @@ docker run \
 echo "Container Completed Builds Successfully"
 echo "Enter Mount Point to Get debs..."
 cd $mount_point_path/release-tools-ros/target
+
+#TEMP check this folder
+ls -la
+
 # Check for debs
 if [ -f *.deb ]; then
     # Debs found, so set to output
