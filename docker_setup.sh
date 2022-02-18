@@ -53,6 +53,7 @@ echo "Sanity Check IMAGE: $IMAGE"
 
 # Run container
 docker run \
+    --privileged \
     --cap-add=SYS_ADMIN \
     -e "container=docker" \
     -e INPUT_ROS_DISTRO=$INPUT_ROS_DISTRO \
