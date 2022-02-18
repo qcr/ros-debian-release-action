@@ -58,8 +58,7 @@ docker run \
     -e INPUT_ROS_DISTRO=$INPUT_ROS_DISTRO \
     -v $mount_point_path:/docker_ws \
     -v /sys/fs/cgroup:/sys/fs/cgroup \
-    -v /usr/sbin/init:/usr/sbin/init \
-    --rm -t $IMAGE/ros:$INPUT_ROS_DISTRO docker_ws/release.sh
+    --rm -t $IMAGE/ros:$INPUT_ROS_DISTRO /bin/bash -c "/usr/sbin/init; docker_ws/release.sh"
 
 # --- Extract Required Outputs [debian files and packages]
 echo "Container Completed Builds Successfully"
