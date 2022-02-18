@@ -67,6 +67,7 @@ ls -la
 
 # Check for debs
 if [ -f *.deb ]; then
+    echo "Found DEBS"
     # Debs found, so set to output
     file_arr=(./*.deb)
     echo "Number of debs: ${#file_arr[@]}"
