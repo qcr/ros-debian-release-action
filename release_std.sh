@@ -9,9 +9,13 @@ echo "Getting Required Libraries..."
 apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-key 5B76C9B0
 sh -c 'echo "deb [arch=$(dpkg --print-architecture)] https://packages.qcr.ai $(lsb_release -sc) main" > /etc/apt/sources.list.d/qcr-latest.list'
 apt -y update 
-apt install -y python3-pip python3-dev python3-bloom python3-stdeb dh-make git wget fakeroot
+apt install -y python3-pip python3-dev python3-bloom python3-stdeb dh-make git wget fakeroot systemd
 # Symbolic link python command to python3 (default behaviour)
 ln -s /usr/bin/python3 /usr/local/bin/python
+
+# TEMP - testing systemctl run
+echo "Testing systemctl..."
+systemctl --version
 
 # Source the ROS workspace
 echo "Source ROS workspace"
