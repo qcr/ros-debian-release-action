@@ -53,6 +53,7 @@ echo "Sanity Check IMAGE: $IMAGE"
 
 # Run container
 docker run \
+    --privileged \
     -e INPUT_ROS_DISTRO=$INPUT_ROS_DISTRO \
     -v $mount_point_path:/docker_ws \
     -v /run/systemd/system:/run/systemd/system \
