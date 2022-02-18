@@ -14,9 +14,9 @@ apt install -y python3-pip python3-dev python3-bloom python3-stdeb dh-make git w
 ln -s /usr/bin/python3 /usr/local/bin/python
 
 # TEMP - testing systemctl run
-# echo "Running /usr/sbin/init"
-# ls -la /usr/sbin/
-# exec /usr/sbin/init
+echo "Running /usr/sbin/init"
+ls -la /usr/sbin/
+exec /usr/sbin/init
 echo "Testing systemctl..."
 systemctl --version
 
