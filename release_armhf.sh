@@ -14,19 +14,24 @@ if [ $os_distro = focal ]; then
     apt install -y python3-pip python3-dev python3-bloom python3-stdeb dh-make git wget fakeroot
     # Symbolic link python command to python3 (default behaviour)
     ln -s /usr/bin/python3 /usr/local/bin/python
+
+    # This has already been build so install only (faster implementation)
+    echo "Uncompressing Pre-Built cmake 3.20 Version for Release within mount point [Required for armhf]"
+    tar -xf /docker_ws/dependencies/cmake-3.20-pre-built.tar.gz -C /docker_ws
+    echo "Entering extracted folder for cmake 3.20 Installation"
+    cd /docker_ws/cmake-3.20
+    make install
+    echo "Sanity check of cmake version:"
+    cmake --version
 elif [ $os_distro = bionic ]; then
 	echo "Running in bionic..."
     apt install -y python-pip python-dev python-bloom python-stdeb dh-make git wget fakeroot
-fi
 
-# This has already been build so install only (faster implementation)
-echo "Uncompressing Pre-Built cmake 3.20 Version for Release within mount point [Required for armhf]"
-tar -xf /docker_ws/dependencies/cmake-3.20-pre-built.tar.gz -C /docker_ws
-echo "Entering extracted folder for cmake 3.20 Installation"
-cd /docker_ws/cmake-3.20
-make install
-echo "Sanity check of cmake version:"
-cmake --version
+    # Debugging output of cmake build (not required)
+    echo "cmake upgrade not required..."
+    echo "Sanity check of existing cmake version:"
+    cmake --version
+fi
 
 # Source the ROS workspace
 echo "Source ROS workspace"
