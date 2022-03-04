@@ -7,9 +7,17 @@ echo "Getting Required Libraries..."
 apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-key 5B76C9B0
 sh -c 'echo "deb [arch=$(dpkg --print-architecture)] https://packages.qcr.ai $(lsb_release -sc) main" > /etc/apt/sources.list.d/qcr-latest.list'
 apt -y update 
-apt install -y python3-pip python3-dev python3-bloom python3-stdeb dh-make git wget fakeroot
-# Symbolic link python command to python3 (default behaviour)
-ln -s /usr/bin/python3 /usr/local/bin/python
+
+os_distro=$(lsb_release -cs)
+if [ $os_distro = focal ]; then
+	echo "Running in focal..."
+    apt install -y python3-pip python3-dev python3-bloom python3-stdeb dh-make git wget fakeroot
+    # Symbolic link python command to python3 (default behaviour)
+    ln -s /usr/bin/python3 /usr/local/bin/python
+elif [ $os_distro = bionic ]; then
+	echo "Running in bionic..."
+    apt install -y python-pip python-dev python-bloom python-stdeb dh-make git wget fakeroot
+fi
 
 # This has already been build so install only (faster implementation)
 echo "Uncompressing Pre-Built cmake 3.20 Version for Release within mount point [Required for armhf]"
