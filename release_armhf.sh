@@ -1,6 +1,5 @@
 echo "Running Release Pipeline..."
 echo "Ros distro is $INPUT_ROS_DISTRO"
-lsb_release -a
 
 # Install Required dependencies
 echo "Getting Required Libraries..."
