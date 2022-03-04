@@ -1,5 +1,3 @@
-#!/usr/bin/bash
-
 echo "Running Release Pipeline..."
 echo "Ros distro is $INPUT_ROS_DISTRO"
 
