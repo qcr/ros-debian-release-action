@@ -9,9 +9,14 @@ jobs:
     strategy:
       matrix:
         include:
-          - arch: 'amd64'
-          - arch: 'arm64'
-          - arch: 'arm32'
+          - ros-distro: melodic
+            arch: amd64
+          - ros-distro: noetic
+            arch: amd64
+          - ros-distro: melodic
+            arch: arm64
+          - ros-distro: noetic
+            arch: arm64
     name: Self Test of Action
     steps:
       - uses: actions/checkout@v2
@@ -21,3 +26,4 @@ jobs:
         uses: qcr/ros-debian-release-action@master
         with:
           architecture: ${{ matrix.arch }}
+          ros-distro: ${{ matrix.ros-distro }}
