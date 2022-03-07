@@ -16,7 +16,7 @@ ls -la $ACTION_PATH
 if [[ $INPUT_ARCH == 'arm32' ]]
 then
     echo "Copy the action entrypoint into the mounted folder"
-    if [[ $INPUT_ROS_DISTRO == 'melodic']]
+    if [[ $INPUT_ROS_DISTRO == 'melodic' ]]
     then
         cp $ACTION_PATH/release_melodic_armhf.sh $mount_point_path/release.sh
     elif [[ $INPUT_ROS_DISTRO == 'noetic' ]]
