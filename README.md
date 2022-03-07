@@ -4,11 +4,13 @@ Composite action to run docker containers for building debians.
 Supported architectures are:
 - ***[Default]*** amd64
 - arm64
-- arm32 (armhf)
+- arm32 (armhf)*
 
 Supported ROS distributions
 - Melodic (Ubuntu 18.04 Bionic)
 - ***[Default]*** Noetic (Ubuntu 20.04 Focal)
+
+\* the arm32 (armhf) is supported, however the build time is excessive. It is recommended to only use this option where required, and default to either amd64 and/or arm64 going forward.
 
 ## Description
 This action is used in conjunction with a ROS package (or workspace, containing multiple ROS packages) to build debians for each of the architectures highlighted above.
