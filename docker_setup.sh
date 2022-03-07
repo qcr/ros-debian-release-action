@@ -16,9 +16,18 @@ ls -la $ACTION_PATH
 if [[ $INPUT_ARCH == 'arm32' ]]
 then
     echo "Copy the action entrypoint into the mounted folder"
-    cp $ACTION_PATH/release_armhf.sh $mount_point_path/release.sh
-    echo "Copy the pre-built dependencies (i.e., cmake-3.20 version) for installation in container"
-    rsync -aPv $ACTION_PATH/dependencies $mount_point_path
+    if [[ $INPUT_ROS_DISTRO == 'melodic']]
+    then
+        cp $ACTION_PATH/release_melodic_armhf.sh $mount_point_path/release.sh
+    elif [[ $INPUT_ROS_DISTRO == 'noetic' ]]
+    then
+        cp $ACTION_PATH/release_noetic_armhf.sh $mount_point_path/release.sh
+        echo "Copy the pre-built dependencies (i.e., cmake-3.20 version) for installation in container"
+        rsync -aPv $ACTION_PATH/dependencies $mount_point_path
+    else
+        echo "Unknown ROS Distro Provided. Exiting..."
+        exit -2
+    fi
 else
     echo "Copy the action entrypoint into the mounted folder"
     cp $ACTION_PATH/release_std.sh $mount_point_path/release.sh
