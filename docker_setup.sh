@@ -69,6 +69,8 @@ echo "Container Completed Builds Successfully"
 echo "Enter Mount Point to Get debs..."
 cd $mount_point_path/release-tools-ros/target
 
+echo "::set-output name=release::$(cat os_release)"
+
 # Find Debs, so set to output
 file_arr=(./*.deb)
 echo "Number of debs: ${#file_arr[@]}"
