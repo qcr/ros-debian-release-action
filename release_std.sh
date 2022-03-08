@@ -33,4 +33,8 @@ cd release-tools-ros
 ln -s ../src src
 echo "running release script"
 ./release
+
+echo "Writing release file"
+echo $os_distro > ./target/os_release
+
 echo "COMPLETED RELEASE PIPELINE"
