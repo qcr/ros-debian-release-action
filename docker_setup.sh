@@ -90,5 +90,13 @@ echo "list: [$list]"
 echo "::set-output name=files::[$list]"
 
 # Get packages list (in target folder)
-echo "Packages:\n$(cat local-sources.yaml)"
-echo "::set-output name=packages::$(cat local-sources.yaml)"
+output=$(cat local-sources.yaml)
+
+echo "Packages:\n$output"
+
+# escape output to prevent truncation
+output="${output//'%'/'%25'}"
+output="${output//$'\n'/'%0A'}"
+output="${output//$'\r'/'%0D'}"
+
+echo "::set-output name=packages::$output"
