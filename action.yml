@@ -10,6 +10,9 @@ inputs:
     required: true
     default: 'amd64'
 outputs:
+  release:
+    description: "Linux release name (e.g., bionic, focal)"
+    value: ${{ steps.docker_main.outputs.release }}
   debian-files:
     description: "Array of Debian Files"
     value: ${{ steps.docker_main.outputs.files }}
