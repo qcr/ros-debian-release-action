@@ -17,7 +17,7 @@ This action is used in conjunction with a ROS package (or workspace, containing 
 
 ## Usage Example
 
-The following is a standard use case of the action, which requires the preceding action(s) [checkout, setup-qemu-action] to get your package(s) and ensure emulation of the different architectures works within each docker container. 
+The following is a standard use case of the action, which requires the preceding action(s) [checkout, setup-qemu-action] to get your package(s) and ensure emulation of the different architectures works within each docker container. A working example can be found in the [example-ros-release](https://github.com/qcr/example-ros-release) repo.
 
 The default functionality of the action (as implemented below) will build your ROS package within a noetic amd64 container. Note that the ***runs-on*** argument can remain the latest ubuntu version, as the containers will have the specified architecture and os version.
 
