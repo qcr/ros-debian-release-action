@@ -69,7 +69,8 @@ echo "Container Completed Builds Successfully"
 echo "Enter Mount Point to Get debs..."
 cd $mount_point_path/release-tools-ros/target
 
-echo "::set-output name=release::$(cat os_release)"
+# echo "::set-output name=release::$(cat os_release)"
+echo "release=$(cat os_release)" >> $GITHUB_OUTPUT"
 
 # Find Debs, so set to output
 file_arr=(./*.deb)
@@ -89,7 +90,9 @@ for f in "${file_arr[@]}"; do
     ((counter=counter+1))
 done
 echo "list: [$list]"
-echo "::set-output name=files::[$list]"
+
+# echo "::set-output name=files::[$list]"
+echo "files=[$list]" >> $GITHUB_OUTPUT"
 
 # Get packages list (in target folder)
 output=$(cat local-sources.yaml)
@@ -101,4 +104,5 @@ output="${output//'%'/'%25'}"
 output="${output//$'\n'/'%0A'}"
 output="${output//$'\r'/'%0D'}"
 
-echo "::set-output name=packages::$output"
+# echo "::set-output name=packages::$output"
+echo "packages=$output" >> $GITHUB_OUTPUT"
