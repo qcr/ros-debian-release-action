@@ -72,7 +72,7 @@ cd $mount_point_path/release-tools-ros/target
 echo "Sanity Check current folder"
 ls -la
 
-# echo "::set-output name=release::$(cat os_release)"
+# Set release output via new env variable
 echo "release=$(cat os_release)" >> "$GITHUB_OUTPUT"
 
 # Find Debs, so set to output
@@ -94,7 +94,7 @@ for f in "${file_arr[@]}"; do
 done
 echo "list: [$list]"
 
-# echo "::set-output name=files::[$list]"
+# Set files (as a list) output via new env variable
 echo "files=[$list]" >> "$GITHUB_OUTPUT"
 
 # Get packages list (in target folder)
@@ -107,5 +107,5 @@ output="${output//'%'/'%25'}"
 output="${output//$'\n'/'%0A'}"
 output="${output//$'\r'/'%0D'}"
 
-# echo "::set-output name=packages::$output"
+# Set packages output via new env variable
 echo "packages=$output" >> "$GITHUB_OUTPUT"
